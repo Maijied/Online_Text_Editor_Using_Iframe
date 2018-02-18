@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MaJHi-WaLa Text Editor</title>
+	<meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	
+
+	<style>
+
+
+
+
+body {
+    background: lightblue url("img/background.jpg") ;
+    padding: 0;
+	margin: 0;
+	//background-color: #CCC;
+	
+    background-size: cover;
+    font-family: sans-serif;
+    min-height: 100%;
+    background-position: center;
+     background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#header
+{
+	margin-top: 0px;
+	height: 50px;
+	width: 100%;
+	background-color:rgb(40,110,89);
+    color:white;
+    border:2px solid white;
+    border-radius: 15px;
+
+
+}
+#header h1
+{
+	margin-right: 50%;
+	text-align:center;
+	font-size: 25px;
+  margin:auto;
+    line-height:55px;
+    vertical-align:middle;
+}
+#space
+{
+	height: 40px;
+}
+
+div#textEditor
+{
+	margin: 0 auto;
+	width: 850px;
+	height: 300px;
+}
+div#theRibbon
+{
+	border-bottom: none;
+	padding: 10px;
+	background-color: rgb(40,110,89);
+	color: white;
+	border-radius: 10px 10px 10px 10px;
+}
+div#richTextArea
+{
+	border:5px solid rgb(40,110,89);
+	border-radius: 10px;
+	height: 150%;
+	width: 850px;
+	background-color: lightblue;
+}
+iframe#theWYSIWYG
+{
+	height: 100%;
+	width: 100%;
+}
+div#theRibbon > button
+{
+	color: white;
+	border:none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+div#theRibbon > button:hover
+{
+	background-color: 	rgb(20,90,70);
+	transition: all 0.3s linear 0s;
+}
+input[type ="color"]
+{
+	border:none;
+	outline: none;
+	background-color: transparent;
+
+}
+#copyButton
+{
+  height: 150%;
+	width: 850px;
+  border-radius:8px;
+  padding:10px;
+  font-size:20px;
+  font-family: 'Oswald', sans-serif;
+  height:52px;
+  cursor:pointer;
+  background-color:wheat;
+}
+
+
+
+
+	</style>
+
+
+	<script>
+		window.addEventListener("load",function(){
+
+			var editor = theWYSIWYG.document;
+			editor.designMode  = "on";
+
+			boldButton.addEventListener("click", function(){
+				editor.execCommand("Bold", false, null);
+			},false);
+
+			italicButton.addEventListener("click", function(){
+				editor.execCommand("Italic", false, null);
+			},false);
+
+			supButton.addEventListener("click", function(){
+				editor.execCommand("Superscript", false, null);
+			},false);
+
+			subButton.addEventListener("click", function(){
+				editor.execCommand("Subscript", false, null);
+			},false);
+			strikeButton.addEventListener("click", function(){
+				editor.execCommand("Strikethrough", false, null);
+			},false);
+			orderedListButton.addEventListener("click", function(){
+				editor.execCommand("InsertOrderedList", false, "newOL" + Math.random(Math.random()*1000));
+			},false);
+			unorderedListButton.addEventListener("click", function(){
+				editor.execCommand("InsertUnorderedList", false, "newOL" + Math.random(Math.random()*1000));
+			},false);
+			fontColorButton.addEventListener("change", function(event){
+				editor.execCommand("ForeColor", false, event.target.value);
+			},false);
+			highlightButton.addEventListener("change", function(event){
+				editor.execCommand("BackColor", false, event.target.value);
+			},false);
+			fontChanger.addEventListener("change", function(event){
+				editor.execCommand("FontName", false, event.target.value);
+			},false);
+			fontSizeChanger.addEventListener("change", function(event){
+				editor.execCommand("FontSize", false, event.target.value);
+			},false);
+			linkButton.addEventListener("click", function(){
+				var url = prompt("Enter A Url", "http://")
+				editor.execCommand("CreateLink", false, url);
+			},false);
+			unLinkButton.addEventListener("click", function(){
+				editor.execCommand("UnLink", false, null);
+			},false);
+			undoButton.addEventListener("click", function(){
+				editor.execCommand("undo", false, null);
+			},false);
+			redoButton.addEventListener("click", function(){
+				editor.execCommand("redo", false, null);
+			},false);
+
+           
+
+
+		},false);
+
+	</script>
+	
+
+</head>
+<body>
+	<div id="header">
+	<h1>MaJHi-WaLa Text Editor</h1>
+</div>
+<div id="space"></div>
+	<div id="textEditor">
+		<div id="theRibbon">
+			<button id="boldButton" title="Bold"><b>B</b></button>
+			<button id="italicButton" title="Italic"><em>I</em></button>
+			<button id="supButton" title="Superscript">X<sup>2</sup></button>
+			<button id="subButton" title="Subscript">X<sub>2</sub></button>
+			<button id="strikeButton" title="Strikethrough"><s>abc</s></button>
+			<button id="orderedListButton" title="Numbered List">(i)</button>
+			<button id="unorderedListButton" title="Bulleted List">&bull;</button>
+			<input type="color" id="fontColorButton" title="Change Font Color">
+			<input type="color" id="highlightButton" title="Highlight Text">
+			<select id="fontChanger">
+				<option value="Times New Roman">Times New Roman</option>
+				<option value="Consolas">Consolas</option>
+				<option value="Tahoma">Tahoma</option>
+				<option value="monospace">Monospace</option>
+				<option value="cursive">Cursive</option>
+				<option value="sans-serif">Sans-Serif</option>
+				<option value="Calibri">Calibri</option>
+				
+			</select>
+			<select id="fontSizeChanger">
+				<script>
+					for(var i=1; i<= 10; i++) {
+						document.write("<option value='"+i+"'>"+i+"</option>");
+					}
+				</script>
+			</select>
+
+			<button id="linkButton" title="Create Link">Link</button>
+			<button id="unLinkButton" title="Remove Link">Unlink</button>
+			<button id="undoButton" title="Undo the previous action">&larr;</button>
+			<button id="redoButton" title="Redo">&rarr;</button>
+	
+		</div>
+		<div id="richTextArea">
+			<iframe id="theWYSIWYG" onload="copyIframeContent(this);" name="theWYSIWYG" frameborder="0"></iframe>
+			<button id="copyButton" >Copy Text</button>
+
+			
+			
+		
+		</div>
+	</div>
+	
+
+	<script>
+		var fonts = document.querySelectorAll("select#fontChanger > option");
+		for (var i = 0; i < fonts.length; i++) {
+			fonts[i].style.fontFamily = fonts[i].value;
+		}
+	</script>
+	
+
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
